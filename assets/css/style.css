@@ -4,6 +4,14 @@ body {
   line-height: 1;
 }
 
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+  border-bottom: 10px solid black;
+}
+
 .scheduler {
   display: flex;
   flex-direction: row;
@@ -25,14 +33,6 @@ body {
   /* border: 1px solid red; */
 }
 
-.jumbotron {
-  text-align: center;
-  background-color: transparent;
-  color: black;
-  border-radius: 0;
-  border-bottom: 10px solid black;
-}
-
 .description {
   white-space: pre-wrap;
   width: 60vw;
@@ -40,10 +40,10 @@ body {
 
 .time-block {
   /* text-align: right; */
-align-items: center;
-justify-content: center;
+  align-items: center;
+  justify-content: center;
   border-radius: 15px;
-width: 10vw;
+  width: 10vw;
 }
 
 .row {
@@ -74,7 +74,16 @@ width: 10vw;
   color: white;
 }
 
-.saveBtn {
+.time-block-box {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.saveBtn,
+.fa-solid,
+.fa-floppy-disk {
+  display: flex;
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -82,6 +91,12 @@ width: 10vw;
   color: white;
   width: 7vw;
   /* border: 1px solid red; */
+}
+
+.fa-floppy-disk,
+.fa-solid {
+  align-items: center;
+  justify-content: center;
 }
 
 .saveBtn i:hover {
