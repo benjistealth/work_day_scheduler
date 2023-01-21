@@ -10,7 +10,7 @@ body {
   /* align-items: center; */
   justify-content: center;
   /* display: inline-block; */
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .textarea {
@@ -22,7 +22,7 @@ body {
   padding: 10px;
   width: 50 vw;
   /* display: inline-block; */
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .jumbotron {
@@ -43,8 +43,7 @@ body {
 align-items: center;
 justify-content: center;
   border-radius: 15px;
-  /* display: inline-block; */
-  border: 1px solid red;
+width: 10vw;
 }
 
 .row {
@@ -81,7 +80,8 @@ justify-content: center;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
-  border: 1px solid red;
+  width: 7vw;
+  /* border: 1px solid red; */
 }
 
 .saveBtn i:hover {

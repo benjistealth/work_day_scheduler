@@ -11,13 +11,13 @@ currentDay.text(todaysDate);
 // create 3 divs to sit side by side & name them for visibility
 var schedulerBlock = function () {
   var timeBlock = $('<div>');
-  timeBlock.addClass('time-block-box').text("time block");
+  timeBlock.addClass('time-block-box');
   timeBlock.appendTo(schedulerEl);
   var textBlock = $('<div>');
-  textBlock.addClass('textareaBox').text("text block");
+  textBlock.addClass('textareaBox');
   textBlock.appendTo(schedulerEl);
   var buttonBlock = $('<div>');
-  buttonBlock.addClass('saveBtnBox').text("button block");
+  buttonBlock.addClass('saveBtnBox');
   buttonBlock.appendTo(schedulerEl);
 }
 
