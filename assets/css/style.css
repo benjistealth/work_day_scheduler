@@ -20,6 +20,7 @@ body {
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
+  width: 50 vw;
   /* display: inline-block; */
   border: 1px solid red;
 }
@@ -34,10 +35,13 @@ body {
 
 .description {
   white-space: pre-wrap;
+  width: 60vw;
 }
 
 .time-block {
-  text-align: center;
+  /* text-align: right; */
+align-items: center;
+justify-content: center;
   border-radius: 15px;
   /* display: inline-block; */
   border: 1px solid red;
@@ -46,6 +50,7 @@ body {
 .row {
   white-space: pre-wrap;
   height: 80px;
+  /* width: 50vw; */
   border-top: 1px solid white;
 }
 
