@@ -8,11 +8,13 @@ var todaysDate = moment().format("dddd MMMM DDDo");
 currentDay.text(todaysDate);
 
 
-// var schedulerBlock = function (timeArr) {
-//   for (i = 0; i < timeArr.length; i++) {
-//     var listEl = $('<li>');
-//     var listDetail = timeArr[i];
-//     listEl.addClass('time-block').text(listDetail);
-//     listEl.appendTo(schedulerEl);
-//   }
-// };
+var schedulerBlock = function (timeArr) {
+  for (i = 0; i < timeArr.length; i++) {
+    var listEl = $('<div>');
+    var listDetail = timeArr[i];
+    listEl.addClass('time-block').text(listDetail);
+    listEl.appendTo(schedulerEl);
+  }
+};
+
+schedulerBlock(timeArr);
