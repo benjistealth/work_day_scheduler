@@ -28,12 +28,11 @@ var schedulerDivs = function (timeArr) {
     var textEl = $('<div>');
     var buttonEl = $('<div>');
     var timeDetail = timeArr[i];
-    var textDetail = "";
+    var textDetail = "edit me";
     timeEl.addClass('time-block row hour').text(timeDetail);
     textEl.addClass('textarea row description input past present future').text(textDetail);
     // textEl.maybe add hour data from array to identify each text element
     buttonEl.addClass('fa-solid fa-floppy-disk center saveBtn row');
-    // addClass('saveBtn row');
     timeEl.appendTo(timeBlock);
     textEl.appendTo(textBlock);
     buttonEl.appendTo(buttonBlock);
@@ -41,18 +40,17 @@ var schedulerDivs = function (timeArr) {
 };
 
 
-//<i class="fas fa-save"></i>
-// <i class="fa-solid fa-floppy-disk"></i>
-
-
 var saveDescription = function () {
   // variable for descriptoin on hour slot
   var hourSlotItem = $('input[name="description"]').val();
   localStorage.setItem("hourNote", hourSlotItem);
+  // notify at top of screen
 }
 
 // create 3 divs for scheduler components
 schedulerBlock();
+// allow them to be editable
+$('textarea *').attr('contenteditable','true');
 
 // grab these divs after creation
 var timeBlock = $('.time-block-box');
@@ -63,21 +61,24 @@ var buttonBlock = $('.saveBtnBox');
 schedulerDivs(timeArr);
 
 // allow text entry into selected div
-var enterText = (function () {
-  let focusedElement;
-  $(document).on('focus', 'input', function () {
-    if (focusedElement == this) return; // already focused, return so the user can place the cursor at a specific entry point
-    focusedElement = this;
-    setTimeout(function () {
-      focusedElement.select();
-    }, 100); //Select all text in any field in focus for easy re-entry. The delay is a bit to allow the focus to “stick” to the selection.
-  });
+var enterText = function () {
+  $('.textareaBox *').attr('contentEditable','true');
+    // $(".input").append("Added text<br>");
+  }
+
+// $( "input" ).select(function() {
+//   $( "div" ).text( "Something was selected" ).show().fadeOut( 1000 );
+// });
+// textBlock.on('input', enterText);
+// buttonBlock.on('click', saveDescription);
+
+buttonBlock.on('click', function () {
+  alert('Save Button');
 });
 
-$( "input" ).select(function() {
-  $( "div" ).text( "Something was selected" ).show().fadeOut( 1000 );
+textBlock.on('click', function () {
+  //alert('description box'); //check click is read
+  enterText();
 });
-textBlock.on('input', enterText);
-buttonBlock.on('click', saveDescription);
 
 
