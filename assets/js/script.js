@@ -1,26 +1,23 @@
-// var currentDay = document.querySelector("#currentDay");
-// var scheduler = document.querySelector(".scheduler");
+// global elements / variables
 var currentDay = $('#currentDay');
 var schedulerEl = $('.scheduler');
-var timeBlock = $('.time-block');
-var textBlock = $('.textarea');
-var buttonBlock = $('.saveBtn');
+
 var timeArr = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
-// put todays date on the Jumbotron
+
+// put todays date on the Jumbotron in requried format
 var todaysDate = moment().format("dddd MMMM DDDo");
 currentDay.text(todaysDate);
 
-// create 3 divs to sit side by side
+// create 3 divs to sit side by side & name them for visibility
 var schedulerBlock = function () {
   var timeBlock = $('<div>');
-  timeBlock.addClass('time-block').text("time div");
+  timeBlock.addClass('time-block-box').text("time block");
   timeBlock.appendTo(schedulerEl);
-  
   var textBlock = $('<div>');
-  textBlock.addClass('textarea').text("text div");
+  textBlock.addClass('textareaBox').text("text block");
   textBlock.appendTo(schedulerEl);
   var buttonBlock = $('<div>');
-  buttonBlock.addClass('saveBtn').text("button div");
+  buttonBlock.addClass('saveBtnBox').text("button block");
   buttonBlock.appendTo(schedulerEl);
 }
 
@@ -29,25 +26,24 @@ var schedulerDivs = function (timeArr) {
   for (i = 0; i < timeArr.length; i++) {
     var timeEl = $('<div>');
     var textEl = $('<div>');
-    var listDetail = timeArr[i];
-    timeEl.addClass('time-block').text(listDetail);
-    textEl.addClass('textarea');
+    var buttonEl = $('<div>');
+    var timeDetail = timeArr[i];
+    timeEl.addClass('time-block row hour').text(timeDetail);
+    textEl.addClass('textarea row description past present future');
+    buttonEl.addClass('saveBtn row');
     timeEl.appendTo(timeBlock);
     textEl.appendTo(textBlock);
+    buttonEl.appendTo(buttonBlock);
   }
 };
 
-
-// schedulerEl.append('<div>' + list[i] + '<span class="picker" 
-// id="save" onclick="saveEntry()"> (X)</span></div>');
-
-// var textArea = function () {
-//   for (i = 0; i < timeArr.length; i++) {
-//     var textEl = $('<div>');
-//     textEl.addClass('textarea');
-//     textEl.appendTo(schedulerEl);
-//   }
-// };
-
+// create 3 divs for scheduler components
 schedulerBlock();
-// textArea();
+
+// grab these divs after creation
+var timeBlock = $('.time-block-box');
+var textBlock = $('.textareaBox');
+var buttonBlock = $('.saveBtnBox');
+
+// insert time text btn divs
+schedulerDivs(timeArr);
