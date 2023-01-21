@@ -4,13 +4,24 @@ body {
   line-height: 1;
 }
 
-textarea {
+.scheduler {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: center;
+  /* display: inline-block; */
+  border: 1px solid red;
+}
+
+.textarea {
   background: transparent;
   border: none;
   resize: none;
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
+  display: inline-block;
+  border: 1px solid red;
 }
 
 .jumbotron {
@@ -28,6 +39,8 @@ textarea {
 .time-block {
   text-align: center;
   border-radius: 15px;
+  display: inline-block;
+  border: 1px solid red;
 }
 
 .row {
