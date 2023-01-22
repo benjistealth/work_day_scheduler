@@ -42,7 +42,7 @@ var schedulerDivs = function (timeArr, recalledAppts) {
     buttonEl.attr("data-index", i);
     timeEl.attr("data-index", i);
     textEl.attr("data-index", i);
-    buttonEl.addClass('fa-solid fa-floppy-disk center btn-primary saveBtn row');
+    buttonEl.addClass('fa-solid fa-floppy-disk saveBtn row');
     timeEl.appendTo(timeBlock);
     textEl.appendTo(textBlock);
     buttonEl.appendTo(buttonBlock);
