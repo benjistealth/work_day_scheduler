@@ -1,9 +1,8 @@
 // global elements / variables
 var currentDay = $('#currentDay');
 var schedulerEl = $('.scheduler');
-var hourNow = moment().format("H");
-// alert(hourNow);
-
+var hourNow = moment().format("H"); // 24hour format hour number only
+// array if timeslots to build scheduler from
 var timeArr = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 
 // put todays date on the Jumbotron in requried format
@@ -12,87 +11,91 @@ currentDay.text(todaysDate);
 
 // create 3 divs to sit side by side & name them for visibility
 var schedulerBlock = function () {
+  var saveNotify = $('<div>');
+  saveNotify.addClass('saveNotify center');
+  saveNotify.appendTo(schedulerEl);
+
   var timeBlock = $('<div>');
   timeBlock.addClass('time-block-box');
-  timeBlock.appendTo(schedulerEl);
+  timeBlock.appendTo(saveNotify);
   var textBlock = $('<div>');
   textBlock.addClass('textareaBox');
-  textBlock.appendTo(schedulerEl);
+  textBlock.appendTo(saveNotify);
   var buttonBlock = $('<div>');
   buttonBlock.addClass('saveBtnBox');
-  buttonBlock.appendTo(schedulerEl);
+  buttonBlock.appendTo(saveNotify);
 }
 
 // create time / text / button Elements within above divs
-var schedulerDivs = function (timeArr) {
+var schedulerDivs = function (timeArr, recalledAppts) {
+  // when no saved data populate with empty strings
+  if (JSON.parse(localStorage.getItem("appointments"))) { var recalledAppts = JSON.parse(localStorage.getItem("appointments")); }
+  else { recalledAppts = ["", "", "", "", "", "", "", "", ""]; }
   for (i = 0; i < timeArr.length; i++) {
     var timeEl = $('<div>');
     var textEl = $('<div>');
     var buttonEl = $('<div>');
     var timeDetail = timeArr[i];
-    var textDetail = "";
+    var textDetail = recalledAppts[i] + "";
     timeEl.addClass('time-block row hour').text(timeDetail);
     textEl.addClass('textarea row description input').text(textDetail);
-    // textEl.maybe add hour data from array to identify each text element
     buttonEl.attr("data-index", i);
     timeEl.attr("data-index", i);
     textEl.attr("data-index", i);
-    buttonEl.addClass('fa-solid fa-floppy-disk center saveBtn row');
+    buttonEl.addClass('fa-solid fa-floppy-disk center btn-primary saveBtn row');
     timeEl.appendTo(timeBlock);
     textEl.appendTo(textBlock);
     buttonEl.appendTo(buttonBlock);
-    textHour = i +9;
+    textHour = i + 9;
     // colour the text elements based on time
-    console.log(hourNow + " - " + textHour);
-    if (hourNow > textHour) { textEl.addClass('past');}
-    else if (hourNow == textHour) { textEl.addClass("present");}
-    else if (hourNow < textHour) {textEl.addClass("future"); }
+    if (hourNow > textHour) { textEl.addClass('past'); }
+    else if (hourNow == textHour) { textEl.addClass("present"); }
+    else if (hourNow < textHour) { textEl.addClass("future"); }
   }
 };
 
-
-
-
+// save data in all text blocks to local storage
 var saveDescription = function () {
-  // variable for descriptoin on hour slot
-  var hourSlotItem = $('input[name="description"]').val();
-  var res = $('.textarea').text();
-  console.log(hourSlotItem);
-  hourSlotItem = JSON.stringify(hourSlotItem);
-  localStorage.setItem("hourNote", hourSlotItem);
-  // notify at top of screen
+  var saveArr = [];
+  for (let i = 0; i < timeArr.length; i++) {
+    // variable for descriptoin on hour slot
+    // var appointment = $('.textarea').text().val();
+    var appointment = $('.textareaBox').children().eq(i).text();
+    saveArr[i] = appointment;
+    localStorage.setItem("appointments", JSON.stringify(saveArr));
+
+  }
+  // notify at top of page beneath jumbotron
+  // disappears scheduler for some reason so do a reload to get it back
+  var saveNotifyText = "Appointment added to LocalStorage";
+  var saveNotifyEl = $('.saveNotify');
+  saveNotifyEl.text(saveNotifyText);
+  $(".saveNotify").show();
+  setTimeout(function () {
+    $(".saveNotify").hide();
+    location.reload(true);
+  }, 600);
 }
 
 // create 3 divs for scheduler components
 schedulerBlock();
-// allow description to be editable
-$('textarea *').attr('contenteditable', 'true');
 
 // grab these divs after creation
 var timeBlock = $('.time-block-box');
 var textBlock = $('.textareaBox');
 var buttonBlock = $('.saveBtnBox');
 
-// insert time text btn divs
+// insert time / text / btn divs & populate stored data
 schedulerDivs(timeArr);
 
-// allow text entry into selected div
-var enterText = function () {
-  $('.textareaBox *').attr('contentEditable', 'true');
-  // $(".input").append("Added text<br>");
-}
-
-// textBlock.on('input', enterText);
-// buttonBlock.on('click', saveDescription);
-
 buttonBlock.on('click', function () {
-  // alert('Save Button');
+  // any save button saves all appointments
   saveDescription();
 });
 
 textBlock.on('click', function () {
-  //alert('description box'); //check click is read
-  enterText();
+  // allow text entry into selected text div
+  $('.textareaBox *').attr('contentEditable', 'true');
 });
 
 
