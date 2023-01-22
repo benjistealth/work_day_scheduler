@@ -56,6 +56,7 @@ var schedulerDivs = function (timeArr) {
 var saveDescription = function () {
   // variable for descriptoin on hour slot
   var hourSlotItem = $('input[name="description"]').val();
+  var res = $('.textarea').text();
   console.log(hourSlotItem);
   hourSlotItem = JSON.stringify(hourSlotItem);
   localStorage.setItem("hourNote", hourSlotItem);
