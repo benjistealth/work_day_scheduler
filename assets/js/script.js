@@ -1,6 +1,8 @@
 // global elements / variables
 var currentDay = $('#currentDay');
 var schedulerEl = $('.scheduler');
+var hourNow = moment().format("H");
+// alert(hourNow);
 
 var timeArr = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 
@@ -28,29 +30,42 @@ var schedulerDivs = function (timeArr) {
     var textEl = $('<div>');
     var buttonEl = $('<div>');
     var timeDetail = timeArr[i];
-    var textDetail = "edit me";
+    var textDetail = "";
     timeEl.addClass('time-block row hour').text(timeDetail);
-    textEl.addClass('textarea row description input past present future').text(textDetail);
+    textEl.addClass('textarea row description input').text(textDetail);
     // textEl.maybe add hour data from array to identify each text element
+    buttonEl.attr("data-index", i);
+    timeEl.attr("data-index", i);
+    textEl.attr("data-index", i);
     buttonEl.addClass('fa-solid fa-floppy-disk center saveBtn row');
     timeEl.appendTo(timeBlock);
     textEl.appendTo(textBlock);
     buttonEl.appendTo(buttonBlock);
+    textHour = i +9;
+    // colour the text elements based on time
+    console.log(hourNow + " - " + textHour);
+    if (hourNow > textHour) { textEl.addClass('past');}
+    else if (hourNow == textHour) { textEl.addClass("present");}
+    else if (hourNow < textHour) {textEl.addClass("future"); }
   }
 };
+
+
 
 
 var saveDescription = function () {
   // variable for descriptoin on hour slot
   var hourSlotItem = $('input[name="description"]').val();
+  console.log(hourSlotItem);
+  hourSlotItem = JSON.stringify(hourSlotItem);
   localStorage.setItem("hourNote", hourSlotItem);
   // notify at top of screen
 }
 
 // create 3 divs for scheduler components
 schedulerBlock();
-// allow them to be editable
-$('textarea *').attr('contenteditable','true');
+// allow description to be editable
+$('textarea *').attr('contenteditable', 'true');
 
 // grab these divs after creation
 var timeBlock = $('.time-block-box');
@@ -62,18 +77,16 @@ schedulerDivs(timeArr);
 
 // allow text entry into selected div
 var enterText = function () {
-  $('.textareaBox *').attr('contentEditable','true');
-    // $(".input").append("Added text<br>");
-  }
+  $('.textareaBox *').attr('contentEditable', 'true');
+  // $(".input").append("Added text<br>");
+}
 
-// $( "input" ).select(function() {
-//   $( "div" ).text( "Something was selected" ).show().fadeOut( 1000 );
-// });
 // textBlock.on('input', enterText);
 // buttonBlock.on('click', saveDescription);
 
 buttonBlock.on('click', function () {
-  alert('Save Button');
+  // alert('Save Button');
+  saveDescription();
 });
 
 textBlock.on('click', function () {
