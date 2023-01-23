@@ -11,19 +11,33 @@ body {
   border-radius: 0;
   border-bottom: 10px solid black;
 }
+/* container to put the storage feedback text into */
+.saveNotify.container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  height: 10 vh;
+}
+/* to colour red the LocalStorage text */
+.localStorage {
+  display: flex;
+  justify-content: center;
+  color: red;
+  padding-left: 1%;
+}
+
+.hide {
+  /*makes invisible - should leave element structure*/
+  visibility: hidden;
+}
 
 .scheduler {
   display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: center;
-
-}
-
-.saveNotify {
-  display: flex;
-  flex-direction: row;
-  color: white;
-  height: 10 vh;
 }
 
 .textarea {
@@ -34,6 +48,7 @@ body {
   border-left: 1px solid black;
   padding: 10px;
   width: 50 vw;
+  text-align: left;
 }
 
 .description {
@@ -92,13 +107,13 @@ body {
   color: white;
   width: 7vw;
 }
-
+/* align floppy disk icon */
 .fa-floppy-disk,
 .fa-solid {
   align-items: center;
   justify-content: center;
 }
-
+/* added black so the icon changes colour on hover */
 .saveBtn:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;

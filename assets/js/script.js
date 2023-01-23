@@ -1,29 +1,36 @@
 // global elements / variables
+var currentDayEl = $('#currentDay');
 var currentDay = $('#currentDay');
-var schedulerEl = $('.scheduler');
+var containerEl = $('.container');
+var saveNotifyEl = $('.saveNotify');
 var hourNow = moment().format("H"); // 24hour format hour number only
 // array if timeslots to build scheduler from
 var timeArr = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 
 // put todays date on the Jumbotron in requried format
 var todaysDate = moment().format("dddd MMMM DDDo");
-currentDay.text(todaysDate);
+currentDayEl.text(todaysDate);
 
-// create 3 divs to sit side by side & name them for visibility
+// creates divs to store the scheduler components
 var schedulerBlock = function () {
-  var saveNotify = $('<div>');
-  saveNotify.addClass('saveNotify center');
-  saveNotify.appendTo(schedulerEl);
-
+  // create save notify div
+  var saveNotify = $('<p>').addClass('saveNotify container');
+  var saveNotifyText = "";
+  saveNotify.text(saveNotifyText);
+  saveNotify.appendTo(containerEl);
+  // create a div to hang the scheduler from
+  var schedulerEl = $('<div>').addClass('scheduler container');
+  schedulerEl.appendTo(containerEl);
+// create 3 divs to sit side by side & name them for visibility
   var timeBlock = $('<div>');
   timeBlock.addClass('time-block-box');
-  timeBlock.appendTo(saveNotify);
+  timeBlock.appendTo(schedulerEl);
   var textBlock = $('<div>');
   textBlock.addClass('textareaBox');
-  textBlock.appendTo(saveNotify);
+  textBlock.appendTo(schedulerEl);
   var buttonBlock = $('<div>');
   buttonBlock.addClass('saveBtnBox');
-  buttonBlock.appendTo(saveNotify);
+  buttonBlock.appendTo(schedulerEl);
 }
 
 // create time / text / button Elements within above divs
@@ -36,16 +43,15 @@ var schedulerDivs = function (timeArr, recalledAppts) {
     var textEl = $('<div>');
     var buttonEl = $('<div>');
     var timeDetail = timeArr[i];
-    var textDetail = recalledAppts[i] + "";
+    var textDetail = recalledAppts[i];
     timeEl.addClass('time-block row hour').text(timeDetail);
     textEl.addClass('textarea row description input').text(textDetail);
-    buttonEl.attr("data-index", i);
-    timeEl.attr("data-index", i);
     textEl.attr("data-index", i);
     buttonEl.addClass('fa-solid fa-floppy-disk saveBtn row');
     timeEl.appendTo(timeBlock);
     textEl.appendTo(textBlock);
     buttonEl.appendTo(buttonBlock);
+    // convert index to 24 hour time equiv for compare
     textHour = i + 9;
     // colour the text elements based on time
     if (hourNow > textHour) { textEl.addClass('past'); }
@@ -59,27 +65,24 @@ var saveDescription = function () {
   var saveArr = [];
   for (let i = 0; i < timeArr.length; i++) {
     // variable for descriptoin on hour slot
-    // var appointment = $('.textarea').text().val();
     var appointment = $('.textareaBox').children().eq(i).text();
     saveArr[i] = appointment;
     localStorage.setItem("appointments", JSON.stringify(saveArr));
-
   }
   // notify at top of page beneath jumbotron
-  // disappears scheduler for some reason so do a reload to get it back
-  var saveNotifyText = "Appointment added to LocalStorage";
-  var saveNotifyEl = $('.saveNotify');
-  saveNotifyEl.text(saveNotifyText);
-  $(".saveNotify").show();
+  var saveNotify = $('.saveNotify');
+  var localStorageText = $('<span>');
+  localStorageText.addClass('localStorage');
+  localStorageText.text('LocalStorage');
+  saveNotify.text("Appointment added to");
+  saveNotify.append(localStorageText);
   setTimeout(function () {
-    $(".saveNotify").hide();
-    location.reload(true);
+    saveNotify.text("");
   }, 600);
 }
 
 // create 3 divs for scheduler components
 schedulerBlock();
-
 // grab these divs after creation
 var timeBlock = $('.time-block-box');
 var textBlock = $('.textareaBox');
@@ -97,5 +100,3 @@ textBlock.on('click', function () {
   // allow text entry into selected text div
   $('.textareaBox *').attr('contentEditable', 'true');
 });
-
-
