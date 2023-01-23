@@ -1,5 +1,5 @@
 # work_day_scheduler
-A webpage that displays a calendar of the current workday, where past hours are coloured grey, future hours are coloured green, current hour is highlighted in red.
+A webpage that displays a calendar of the current workday with todays date at the top under the title.  Past hours are coloured grey, future hours are coloured green, current hour is highlighted in red.
 
 ## Description
 
@@ -39,7 +39,7 @@ NA
 
 ## Features
 
-HTML, CSS, Javascript
+HTML, CSS, Javascript, JQuery
 
 ## How to Contribute
 
