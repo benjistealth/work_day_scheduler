@@ -61,6 +61,8 @@ var schedulerDivs = function (timeArr, recalledAppts) {
 };
 
 // save data in all text blocks to local storage
+// this function resets the array so in order to retain scores
+// we need to grab data from storage, amend and re-save
 var saveDescription = function () {
   var saveArr = [];
   for (let i = 0; i < timeArr.length; i++) {
@@ -91,11 +93,13 @@ var buttonBlock = $('.saveBtnBox');
 // insert time / text / btn divs & populate stored data
 schedulerDivs(timeArr);
 
+// any save button becomes a save event
 buttonBlock.on('click', function () {
   // any save button saves all appointments
   saveDescription();
 });
 
+// any description box becomes a text box
 textBlock.on('click', function () {
   // allow text entry into selected text div
   $('.textareaBox *').attr('contentEditable', 'true');
