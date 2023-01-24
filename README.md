@@ -1,9 +1,15 @@
 # work_day_scheduler
-A webpage that displays a calendar of the current workday with todays date at the top under the title.  Past hours are coloured grey, future hours are coloured green, current hour is highlighted in red.
+A webpage that displays a calendar of the current workday with hour slots starting at 9am going up to 5pm.  Entries can be saved using the save buttons.
 
 ## Description
 
-- A webapp 
+- A webpage that displays a calendar of the current workday with todays date at the top under the
+  title.  Past hours are coloured grey, future hours are coloured green, current hour is highlighted in red.
+
+- Any entries made in an hour slot will be saved (when a save button is pressed) and recalled when 
+  the page is next opened.
+
+- data is saved in local browser storage so will be unique to the browser accessing the page.
 
 
 ## Screenshot of the scheduler with some items recalled from local storage
