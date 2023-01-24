@@ -15,11 +15,8 @@ body {
 .saveNotify.container {
   display: flex;
   flex-direction: row;
-  text-align: center;
-  align-items: center;
   justify-content: center;
   color: white;
-  height: 10 vh;
 }
 /* to colour red the LocalStorage text */
 .localStorage {
