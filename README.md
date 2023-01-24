@@ -28,7 +28,7 @@ https://benjistealth.github.io/work_day_scheduler
 
 - Visit the page on Github pages, enter some items in the scheduler and save them
 - The items will be there when you return to the page even after closing the browser
-https://benjistealth.github.io/work_day_scheduler
+- Please have a play with it here: https://benjistealth.github.io/work_day_scheduler
 
 ## Credits
 
