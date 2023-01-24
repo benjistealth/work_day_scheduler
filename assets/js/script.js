@@ -80,7 +80,7 @@ var saveDescription = function () {
   saveNotify.append(localStorageText);
   setTimeout(function () {
     saveNotify.text("");
-  }, 600);
+  }, 800);
 }
 
 // create 3 divs for scheduler components
