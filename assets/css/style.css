@@ -58,7 +58,7 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-  width: 10vw;
+  width: 7rem;
 }
 
 .row {
@@ -91,6 +91,7 @@ body {
 .time-block-box {
   display: flex;
   flex-direction: column;
+  min-width: 5rem;
 }
 
 .saveBtn,
