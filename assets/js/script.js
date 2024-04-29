@@ -6,7 +6,7 @@ var hourNow = moment().format("H"); // 24hour format hour number only
 // array of timeslots to build scheduler from
 var timeArr = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 
-// put todays date on the Jumbotron in requried format
+// put todays date on the Jumbotron
 const todaysDate = new Date().toDateString();
 currentDayEl.text(todaysDate);
 
