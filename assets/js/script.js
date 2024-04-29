@@ -1,5 +1,6 @@
 // global elements / variables
 var currentDayEl = $('#currentDay');
+var timeNowEl = $('#timeNow');
 var containerEl = $('.container');
 var saveNotifyEl = $('.saveNotify');
 var hourNow = moment().format("H"); // 24hour format hour number only
@@ -9,6 +10,12 @@ var timeArr = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
 // put todays date on the Jumbotron
 const todaysDate = new Date().toDateString();
 currentDayEl.text(todaysDate);
+
+// put the current time beneath the date
+const currentDate = new Date();
+const timestamp = currentDate.getTime();
+const timenow = currentDate.toLocaleTimeString()
+timeNowEl.text(timenow);
 
 // creates divs to store the scheduler components
 var schedulerBlock = function () {
